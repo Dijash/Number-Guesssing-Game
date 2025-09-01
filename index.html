@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game (Brython)</title>
+
+  <!-- Brython scripts -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.1/brython.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.1/brython_stdlib.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Animated Gradient Background */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #8e2de2, #4a00e0, #6a11cb, #2575fc);
+      background-size: 400% 400%;
+      animation: gradientBG 7s ease infinite;
+      padding: 1rem;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Card container */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem 3rem ;
+      border-radius: 25px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    input[type="number"] {
+      width: 80%;
+      padding: 1rem;
+      border-radius: 15px;
+      border: 1px solid #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #2575fc;
+      box-shadow: 0 0 15px rgba(37,117,252,0.4);
+    }
+
+    button {
+      width: 48%;
+      padding: 0.85rem 1rem;
+      border-radius: 15px;
+      border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin: 0.5%;
+      transition: all 0.3s;
+      color: white;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    #message {
+      margin-top: 1.2rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      min-height: 1.8rem;
+      transition: all 0.4s;
+    }
+
+    #attempts-left {
+      margin-top: 0.7rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .success { color: #28a745; animation: bounce 0.5s; }
+    .error { color: #dc3545; animation: shake 0.4s; }
+    .info { color: #007bff; }
+
+    /* Animations */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8rem; }
+      input[type="number"] { font-size: 1rem; padding: 0.7rem 0.9rem; }
+      button { font-size: 1rem; padding: 0.75rem 1rem; width: 100%; margin: 0.4rem 0; }
+      .card { padding: 2rem 1.5rem; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body onload="brython()">
+
+  <div class="card">
+    <h1>🎲 Number Guessing Game</h1>
+
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <div>
+      <button id="guess-btn">Guess</button>
+      <button id="restart-btn" style="display:none;">Restart</button>
+    </div>
+
+    <p id="message" class="info"></p>
+    <p id="attempts-left" class="info"></p>
+  </div>
+
+  <!-- External Python logic -->
+  <script type="text/python" src="Number-Guessing.py"></script>
+
+</body>
+</html>
