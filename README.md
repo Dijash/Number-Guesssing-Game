@@ -20,7 +20,7 @@ A modern, interactive **Number Guessing Game** built with **Brython**, HTML, and
 
 ## 🖼️ Screenshot
 
-![Game Screenshot](screenshot.png)  
+![Game Screenshot](preview.png)  
 
 ---
 
