@@ -3,7 +3,7 @@ import random
 
 number = random.randint(1, 100)
 attempts = 0
-max_attempts = 10
+max_attempts = 100
 
 def update_attempts():
     document["attempts-left"].text = "Attempts left: " + str(max_attempts - attempts)
